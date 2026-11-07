@@ -8,6 +8,12 @@ Pradiniame įmonių sąrašo ekrane „+“ atveria naujos įmonės formą. Joje
 
 „Išsaugoti“ aktyvus tik tada, kai duomenys tinkami ir nėra nebaigto kontakto pridėjimo ar redagavimo. Paspaudus mygtuką, įmonės ir kontaktų duomenys pateikiami naršyklės konsolėje. Tikras saugojimas šiame etape neįgyvendintas, todėl įmonių sąrašas lieka tuščias, o išėjus iš formos jos duomenys prarandami.
 
+## Veiksmų seka
+
+[Supaprastinta programos veiksmų diagrama](diagrams/flow.svg) · [„Mermaid“ šaltinis](diagrams/flow.mmd)
+
+Diagrama rodo pagrindinę eigą nuo įmonių sąrašo iki duomenų pateikimo konsolėje. Redagavimo, šalinimo ir atšaukimo šakos joje nedetalizuojamos.
+
 ## Paleidimas
 
 Projektas paruoštas su „Node.js“ 24.21.0, `npm` 11.19.0 ir „Angular CLI“ 22.1.8. Projekto aplanke vykdykite:

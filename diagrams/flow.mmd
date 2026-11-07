@@ -1,0 +1,17 @@
+flowchart TD
+    A[Įmonių sąrašas] --> B[+ Pridėti įmonę]
+    B --> C[Atveriama įmonės forma]
+    C --> D[Įvedami įmonės rekvizitai]
+    D --> E{Ar reikia kontaktinio asmens?}
+
+    E -->|Taip| F[+ Pridėti kontaktą]
+    F --> G[Įvedami kontakto duomenys]
+    G --> H[Patvirtinti kontaktą]
+    H --> I[Kontaktas rodomas įmonės formoje]
+    I --> J{Ar reikia dar vieno kontakto?}
+    J -->|Taip| F
+
+    E -->|Ne| K[Įmonės duomenys paruošti]
+    J -->|Ne| K
+    K --> L[Išsaugoti]
+    L --> M[Įmonė su kontaktais pateikiama konsolėje]
