@@ -1,0 +1,143 @@
+<section class="card" aria-labelledby="company-form-title">
+  <div class="section-heading">
+    <h2 id="company-form-title">Nauja įmonė</h2>
+  </div>
+  <p class="form-hint">
+    Žvaigždute (<span class="required-marker">*</span>) pažymėti laukai privalomi.
+  </p>
+  <form [formGroup]="companyForm" (ngSubmit)="submit()" novalidate>
+    <div class="fields-grid">
+      <div class="field">
+        <label for="company-name"
+          >Pavadinimas <span class="required-marker" aria-hidden="true">*</span></label
+        >
+        <input
+          appTrim
+          id="company-name"
+          type="text"
+          formControlName="name"
+          placeholder="2–30 simbolių"
+          autocomplete="organization"
+          required
+          maxlength="30"
+          [attr.aria-invalid]="
+            companyForm.controls.name.invalid && companyForm.controls.name.touched
+          "
+          [attr.aria-describedby]="error('name') ? 'company-name-error' : null"
+        />
+        @if (error('name'); as message) {
+          <p id="company-name-error" class="error">{{ message }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="company-companyCode">Įmonės kodas</label>
+        <input
+          appTrim
+          id="company-companyCode"
+          type="text"
+          formControlName="companyCode"
+          placeholder="7 arba 9 skaitmenys"
+          autocomplete="off"
+          inputmode="numeric"
+          [attr.aria-invalid]="
+            companyForm.controls.companyCode.invalid && companyForm.controls.companyCode.touched
+          "
+          [attr.aria-describedby]="error('companyCode') ? 'company-companyCode-error' : null"
+        />
+        @if (error('companyCode'); as message) {
+          <p id="company-companyCode-error" class="error">{{ message }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="company-vatCode">PVM registracijos kodas</label>
+        <input
+          appTrim
+          id="company-vatCode"
+          type="text"
+          formControlName="vatCode"
+          placeholder="9 arba 12 skaitmenų, su LT arba be jo"
+          autocomplete="off"
+          [attr.aria-invalid]="
+            companyForm.controls.vatCode.invalid && companyForm.controls.vatCode.touched
+          "
+          [attr.aria-describedby]="error('vatCode') ? 'company-vatCode-error' : null"
+        />
+        @if (error('vatCode'); as message) {
+          <p id="company-vatCode-error" class="error">{{ message }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="company-address">Adresas</label>
+        <input
+          appTrim
+          id="company-address"
+          type="text"
+          formControlName="address"
+          placeholder="Gatvė, namo numeris, miestas"
+          autocomplete="street-address"
+          [attr.aria-invalid]="
+            companyForm.controls.address.invalid && companyForm.controls.address.touched
+          "
+          [attr.aria-describedby]="error('address') ? 'company-address-error' : null"
+        />
+        @if (error('address'); as message) {
+          <p id="company-address-error" class="error">{{ message }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="company-email"
+          >El. paštas <span class="required-marker" aria-hidden="true">*</span></label
+        >
+        <input
+          appTrim
+          id="company-email"
+          type="email"
+          formControlName="email"
+          placeholder="info@example.lt"
+          autocomplete="email"
+          required
+          [attr.aria-invalid]="
+            companyForm.controls.email.invalid && companyForm.controls.email.touched
+          "
+          [attr.aria-describedby]="error('email') ? 'company-email-error' : null"
+        />
+        @if (error('email'); as message) {
+          <p id="company-email-error" class="error">{{ message }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="company-phone">Telefonas</label>
+        <input
+          appTrim
+          id="company-phone"
+          type="tel"
+          formControlName="phone"
+          autocomplete="tel"
+          placeholder="+3706XXXXXXX arba 06XXXXXXX"
+          [attr.aria-invalid]="
+            companyForm.controls.phone.invalid && companyForm.controls.phone.touched
+          "
+          [attr.aria-describedby]="error('phone') ? 'company-phone-error' : null"
+        />
+        @if (error('phone'); as message) {
+          <p id="company-phone-error" class="error">{{ message }}</p>
+        }
+      </div>
+    </div>
+    <app-contact-list
+      [contacts]="companyForm.controls.contacts"
+      (editingChanged)="editingContact.set($event)"
+    />
+    <div class="form-actions">
+      <button type="submit" class="button" [disabled]="companyForm.invalid || editingContact()">
+        Išsaugoti
+      </button>
+      <a
+        routerLink="/companies"
+        class="button cancel-button"
+        title="Atšaukti ir atmesti įvestus duomenis"
+        >Atšaukti</a
+      >
+    </div>
+  </form>
+</section>

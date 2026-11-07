@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 2rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: 0.6rem;
+  color: var(--muted);
+  text-align: center;
+}

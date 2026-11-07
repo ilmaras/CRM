@@ -1,0 +1,184 @@
+<section aria-labelledby="contacts-title">
+  <div class="section-heading">
+    <h3 id="contacts-title">Kontaktiniai asmenys</h3>
+    <button
+      type="button"
+      class="card-action add-button"
+      aria-label="Pridėti kontaktinį asmenį"
+      title="Pridėti kontaktinį asmenį"
+      [disabled]="editingIndex() !== null"
+      (click)="add()"
+    >
+      <span aria-hidden="true">+</span>
+    </button>
+  </div>
+
+  @if (contacts().length === 0 && editingIndex() === null) {
+    <p class="empty-state">Kontaktinių asmenų nėra.</p>
+  }
+  @if (contacts().length > 0) {
+    <ul class="contacts-list">
+      @for (group of contacts().controls; track group; let index = $index) {
+        @let contact = group.getRawValue();
+        <li class="contact-card" [class.is-editing]="editingIndex() === index">
+          <div class="contact-details">
+            <h4>{{ contact.firstName }} {{ contact.lastName }}</h4>
+            @if (contact.position) {
+              <p class="position">{{ contact.position }}</p>
+            }
+            <div class="contact-links">
+              <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+              <a [href]="'tel:' + contact.phone">{{ contact.phone }}</a>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button
+              type="button"
+              class="card-action edit-button"
+              [attr.aria-label]="
+                'Redaguoti kontaktą: ' + contact.firstName + ' ' + contact.lastName
+              "
+              title="Redaguoti kontaktą"
+              [disabled]="editingIndex() !== null"
+              (click)="edit(index)"
+            >
+              <span aria-hidden="true">/</span>
+            </button>
+            <button
+              type="button"
+              class="card-action delete-button"
+              [attr.aria-label]="
+                'Pašalinti kontaktą: ' + contact.firstName + ' ' + contact.lastName
+              "
+              title="Pašalinti kontaktą"
+              [disabled]="editingIndex() !== null"
+              (click)="remove(index)"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+
+  @if (editingIndex() !== null) {
+    <fieldset class="contact-editor" [formGroup]="draft">
+      <legend>{{ editingIndex() === -1 ? 'Naujas kontaktas' : 'Redaguoti kontaktą' }}</legend>
+      <div class="fields-grid">
+        <div class="field">
+          <label for="contact-firstName"
+            >Vardas <span class="required-marker" aria-hidden="true">*</span></label
+          >
+          <input
+            appTrim
+            id="contact-firstName"
+            type="text"
+            formControlName="firstName"
+            autocomplete="given-name"
+            placeholder="Vardas"
+            required
+            [attr.aria-invalid]="
+              draft.controls.firstName.invalid && draft.controls.firstName.touched
+            "
+            [attr.aria-describedby]="error('firstName') ? 'contact-firstName-error' : null"
+          />
+          @if (error('firstName'); as message) {
+            <p id="contact-firstName-error" class="error">{{ message }}</p>
+          }
+        </div>
+        <div class="field">
+          <label for="contact-lastName"
+            >Pavardė <span class="required-marker" aria-hidden="true">*</span></label
+          >
+          <input
+            appTrim
+            id="contact-lastName"
+            type="text"
+            formControlName="lastName"
+            autocomplete="family-name"
+            placeholder="Pavardė"
+            required
+            [attr.aria-invalid]="draft.controls.lastName.invalid && draft.controls.lastName.touched"
+            [attr.aria-describedby]="error('lastName') ? 'contact-lastName-error' : null"
+          />
+          @if (error('lastName'); as message) {
+            <p id="contact-lastName-error" class="error">{{ message }}</p>
+          }
+        </div>
+        <div class="field">
+          <label for="contact-position">Pareigos</label>
+          <input
+            appTrim
+            id="contact-position"
+            type="text"
+            formControlName="position"
+            autocomplete="organization-title"
+            placeholder="Pareigos"
+            [attr.aria-invalid]="draft.controls.position.invalid && draft.controls.position.touched"
+            [attr.aria-describedby]="error('position') ? 'contact-position-error' : null"
+          />
+          @if (error('position'); as message) {
+            <p id="contact-position-error" class="error">{{ message }}</p>
+          }
+        </div>
+        <div class="field">
+          <label for="contact-email"
+            >El. paštas <span class="required-marker" aria-hidden="true">*</span></label
+          >
+          <input
+            appTrim
+            id="contact-email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="vardas@example.lt"
+            required
+            [attr.aria-invalid]="draft.controls.email.invalid && draft.controls.email.touched"
+            [attr.aria-describedby]="error('email') ? 'contact-email-error' : null"
+          />
+          @if (error('email'); as message) {
+            <p id="contact-email-error" class="error">{{ message }}</p>
+          }
+        </div>
+        <div class="field">
+          <label for="contact-phone"
+            >Telefonas <span class="required-marker" aria-hidden="true">*</span></label
+          >
+          <input
+            appTrim
+            id="contact-phone"
+            type="tel"
+            formControlName="phone"
+            autocomplete="tel"
+            placeholder="+3706XXXXXXX arba 06XXXXXXX"
+            required
+            [attr.aria-invalid]="draft.controls.phone.invalid && draft.controls.phone.touched"
+            [attr.aria-describedby]="error('phone') ? 'contact-phone-error' : null"
+          />
+          @if (error('phone'); as message) {
+            <p id="contact-phone-error" class="error">{{ message }}</p>
+          }
+        </div>
+      </div>
+      <div class="form-actions">
+        <button
+          type="button"
+          class="button confirm-contact"
+          [disabled]="draft.invalid"
+          (click)="confirm()"
+        >
+          Patvirtinti
+        </button>
+        <button
+          type="button"
+          class="button cancel-button"
+          title="Atšaukti kontakto pakeitimus"
+          (click)="cancel()"
+        >
+          Atšaukti
+        </button>
+      </div>
+    </fieldset>
+  }
+</section>

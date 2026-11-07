@@ -1,0 +1,39 @@
+# Surinkimo rezultatai ir laikini failai
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Priklausomybės ir žurnalai
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Redaktorių vietiniai nustatymai
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+/.vscode/
+.history/
+*.swp
+*.swo
+*~
+
+# Talpyklos ir testų rezultatai
+/.angular/
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# Operacinės sistemos failai
+.DS_Store
+Thumbs.db

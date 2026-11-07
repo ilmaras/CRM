@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: 0.6rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.contacts-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+
+.contact-card.is-editing {
+  border-color: var(--accent);
+}
+
+.contact-details {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.position {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.contact-links a {
+  color: var(--accent-dark);
+  text-underline-offset: 0.15rem;
+}
+
+.card-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.4rem;
+}
+
+.edit-button {
+  border-color: rgba(70, 83, 189, 0.35);
+  color: rgba(70, 83, 189, 0.75);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.edit-button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--focus);
+  color: var(--accent-dark);
+}
+
+.delete-button {
+  border-color: rgba(181, 46, 72, 0.3);
+  color: rgba(181, 46, 72, 0.72);
+  font-size: 1.45rem;
+}
+
+.delete-button:hover:not(:disabled) {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.card-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.contact-editor {
+  min-width: 0;
+  margin: 1.25rem 0 0;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+
+legend {
+  padding: 0 0.4rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .contact-editor {
+    padding: 0.75rem;
+  }
+}

@@ -1,0 +1,120 @@
+:root {
+  --accent: #4653bd;
+  --accent-dark: #35419f;
+  --ink: #242938;
+  --text: #414756;
+  --muted: #737987;
+  --border: #dde0e7;
+  --border-strong: #bfc4cf;
+  --focus: rgba(70, 83, 189, 0.2);
+  --danger: #b52e48;
+  --danger-soft: #fce9ed;
+  --success: #32845b;
+  --success-dark: #256544;
+  --success-soft: #e8f4ed;
+  color-scheme: light;
+  font-family: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: #f4f5f7;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.card {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: #fff;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.3rem;
+}
+
+.card-action {
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.add-button {
+  border-color: rgba(50, 132, 91, 0.6);
+  color: var(--success);
+  font-size: 1.4rem;
+}
+
+.add-button:hover:not(:disabled) {
+  border-color: var(--success);
+  background: var(--success-soft);
+  color: var(--success-dark);
+}
+
+.button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.4rem;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cancel-button {
+  border-color: rgba(181, 46, 72, 0.3);
+  background: transparent;
+  color: rgba(181, 46, 72, 0.72);
+}
+
+.cancel-button:hover {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.card-action:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
